@@ -1,0 +1,43 @@
+package br.com.dio.desafio.dominio;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+public class Mentoria extends Conteudo{
+	private LocalDate data;
+	private Set<Mentoria> preRequisitos = new HashSet<>();
+	
+	@Override
+	public double calcularXp() {
+		// TODO Auto-generated method stub
+		return XP_PADRAO + 20d;
+	}
+	
+	public Mentoria() {
+	}
+	
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+	
+	public Set<Mentoria> getPreRequisitos() {
+        return preRequisitos;
+    }
+
+    public void adicionarPreRequisito(Mentoria mentoria) {
+        preRequisitos.add(mentoria);
+    }
+	
+
+	@Override
+	public String toString() {
+		return "Mentoria [titulo=" + getTitulo() + ", descricao=" + getDescricao() + ", data=" + data + "]";
+	}
+
+	
+}

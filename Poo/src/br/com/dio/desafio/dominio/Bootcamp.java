@@ -60,6 +60,4 @@ public class Bootcamp {
 				&& Objects.equals(devsInscritos, other.devsInscritos) && Objects.equals(nome, other.nome);
 	}
 	
-	
-	
 }

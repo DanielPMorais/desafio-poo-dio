@@ -11,14 +11,16 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Curso curso1 = new Curso();
-		curso1.setTitulo("Curso Java");
-		curso1.setDescricao("Descrição Curso Java");
+		curso1.setTitulo("Curso Lógica de Programação");
+		curso1.setDescricao("Descrição Curso Lógica de Programação");
 		curso1.setCargaHoraria(8);
 
 		Curso curso2 = new Curso();
 		curso2.setTitulo("Curso JavaScript");
 		curso2.setDescricao("Descrição Curso JavaScript");
-		curso2.setCargaHoraria(4);
+		curso2.setCargaHoraria(16);
+		curso2.adicionarPreRequisito(curso1);
+		
 		
 		Mentoria mentoria = new Mentoria();
 		mentoria.setTitulo("Mentoria Java");
@@ -45,6 +47,7 @@ public class Main {
 		System.out.println("Conteúdos inscritos Daniel" + devDaniel.getConteudosInscritos());
 		System.out.println("Conteúdos concluídos Daniel" + devDaniel.getConteudosConcluidos());
 		System.out.println("XP: " + devDaniel.calcularTotalXp());
+		System.out.println("Nível: " + devDaniel.verificarNivel());
 		
 		System.out.println("-------");
 		
@@ -58,6 +61,7 @@ public class Main {
 		System.out.println("Conteúdos inscritos João" + devJoao.getConteudosInscritos());
 		System.out.println("Conteúdos concluídos João" + devJoao.getConteudosConcluidos());
 		System.out.println("XP: " + devJoao.calcularTotalXp());
+		System.out.println("Nível: " + devJoao.verificarNivel());
 		
 	}
 }

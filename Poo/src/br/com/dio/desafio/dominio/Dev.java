@@ -1,15 +1,24 @@
 package br.com.dio.desafio.dominio;
 
-import java.util.LinkedHashSet;
-import java.util.Objects;
-import java.util.Set;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Dev {
 	//Atributos
 	private String nome;
 	private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
 	private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+	private int nivel = 1;
+	private static final int XP_POR_NIVEL = 100;
+	private List<String> historicoDeProgresso = new ArrayList<>();
+	
+	public double verificarNivel() {
+		double xpTotal = calcularTotalXp();
+		while(xpTotal >= XP_POR_NIVEL * nivel) {
+			nivel++;
+		}
+		return nivel;
+	}
 	
 	public void inscreverBootcamp(Bootcamp bootcamp) {
 		this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -19,11 +28,35 @@ public class Dev {
 	public void progredir() {
 		Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
 		if(conteudo.isPresent()) {
-			this.conteudosConcluidos.add(conteudo.get());
-			this.conteudosInscritos.remove(conteudo.get());
+			if(conteudo.get() instanceof Curso) {
+				Curso curso = (Curso) conteudo.get();
+				if (verificarPreRequisitos(curso)) {
+					this.conteudosConcluidos.add(conteudo.get());
+					this.conteudosInscritos.remove(conteudo.get());
+					registrarProgresso(curso.getTitulo());
+					System.out.println("Progresso realizado com sucesso na mentoria: " + curso.getTitulo() + " concluido em: " + LocalDate.now());
+				} else {
+					System.err.println("Pré-requisitos não atendidos para o curso: " + curso.getTitulo());
+				}
+			} else if(conteudo.get() instanceof Mentoria) {
+				Mentoria mentoria = (Mentoria) conteudo.get();
+				this.conteudosConcluidos.add(conteudo.get());
+				this.conteudosInscritos.remove(conteudo.get());
+				registrarProgresso(mentoria.getTitulo());
+				System.out.println("Progresso realizado com sucesso na mentoria: " + mentoria.getTitulo() + " concluido em: " + LocalDate.now());
+			}
 		} else {
 			System.err.println("Você não está matriculado em nenhum conteúdo!");
 		}
+	}
+	
+	private boolean verificarPreRequisitos(Curso curso) {
+		return conteudosConcluidos.containsAll(curso.getPreRequisitos());
+	}
+	
+	private void registrarProgresso(String tituloConteudo) {
+		LocalDate dataAtual = LocalDate.now();
+		historicoDeProgresso.add("Conteúdo: " + tituloConteudo + " concluído em " + dataAtual);
 	}
 	
 	public double calcularTotalXp() {
@@ -57,6 +90,10 @@ public class Dev {
 		this.conteudosConcluidos = conteudosConcluidos;
 	}
 	
+	public int getNivel() {
+		return nivel;
+	}
+
 	public boolean equals(Object o) {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;
