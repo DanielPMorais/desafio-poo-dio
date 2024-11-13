@@ -35,7 +35,6 @@ public class Dev {
 					this.conteudosConcluidos.add(conteudo.get());
 					this.conteudosInscritos.remove(conteudo.get());
 					registrarProgresso(curso.getTitulo());
-					gerarCertificado(curso);
 					System.out.println("Progresso realizado com sucesso na mentoria: " + curso.getTitulo() + " concluido em: " + LocalDate.now());
 				} else {
 					System.err.println("Pré-requisitos não atendidos para o curso: " + curso.getTitulo());
@@ -45,7 +44,6 @@ public class Dev {
 				this.conteudosConcluidos.add(conteudo.get());
 				this.conteudosInscritos.remove(conteudo.get());
 				registrarProgresso(mentoria.getTitulo());
-				gerarCertificado(mentoria);
 				System.out.println("Progresso realizado com sucesso na mentoria: " + mentoria.getTitulo() + " concluido em: " + LocalDate.now());
 			}
 		} else {
@@ -76,15 +74,7 @@ public class Dev {
 		System.out.println("Certificado gerado com sucesso: " + certificado);
 	}
 	
-//	Método para exibir os certificados do Dev
-	public void exibirCertificados() {
-		if (certificados.isEmpty()) {
-			System.out.println("Nenhum certificado gerado ainda.");
-		} else {
-			System.out.println("Certificados de conclusão:");
-			certificados.forEach(System.out::println);
-		}
-	}
+	
 	
 //	Método para verificar os pré requisitos dos cursos
 	private boolean verificarPreRequisitos(Curso curso) {
@@ -99,7 +89,6 @@ public class Dev {
 				.sum();
 	}
 
-//	Getters e Setters
 	public String getNome() {
 		return nome;
 	}
@@ -128,7 +117,6 @@ public class Dev {
 		return nivel;
 	}
 
-//	Equals HashCode
 	public boolean equals(Object o) {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;

@@ -48,7 +48,6 @@ public class Main {
 		System.out.println("Conteúdos concluídos Daniel" + devDaniel.getConteudosConcluidos());
 		System.out.println("XP: " + devDaniel.calcularTotalXp());
 		System.out.println("Nível: " + devDaniel.verificarNivel());
-		devDaniel.exibirCertificados();
 		
 		System.out.println("-------");
 		
@@ -59,12 +58,10 @@ public class Main {
 		devJoao.progredir();
 		devJoao.progredir();
 		devJoao.progredir();
-//		System.out.println("Conteúdos inscritos João" + devJoao.getConteudosInscritos());
-//		System.out.println("Conteúdos concluídos João" + devJoao.getConteudosConcluidos());
-//		System.out.println("XP: " + devJoao.calcularTotalXp());
-//		System.out.println("Nível: " + devJoao.verificarNivel());
-		System.out.println("-------");
-		devJoao.exibirCertificados();
+		System.out.println("Conteúdos inscritos João" + devJoao.getConteudosInscritos());
+		System.out.println("Conteúdos concluídos João" + devJoao.getConteudosConcluidos());
+		System.out.println("XP: " + devJoao.calcularTotalXp());
+		System.out.println("Nível: " + devJoao.verificarNivel());
 		
 	}
 }

@@ -76,7 +76,6 @@ public class Dev {
 		System.out.println("Certificado gerado com sucesso: " + certificado);
 	}
 	
-//	Método para exibir os certificados do Dev
 	public void exibirCertificados() {
 		if (certificados.isEmpty()) {
 			System.out.println("Nenhum certificado gerado ainda.");

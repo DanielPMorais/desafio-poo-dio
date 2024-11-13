@@ -73,7 +73,7 @@ public class Dev {
 	private void gerarCertificado(Conteudo conteudo) {
 		Certificado certificado = new Certificado(this.nome, conteudo.getTitulo());
 		certificados.add(certificado);
-		System.out.println("Certificado gerado com sucesso: " + certificado);
+//		System.out.println("Certificado gerado com sucesso: " + certificado);
 	}
 	
 //	Método para exibir os certificados do Dev
